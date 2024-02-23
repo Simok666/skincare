@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\Auth\AdminAuthController;
+use App\Http\Controllers\API\Auth\UserAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
+    Route::post('user/login', [UserAuthController::class, 'login']);
+    Route::post('admin/login', [AdminAuthController::class, 'login']);
+});
+// for user
+Route::middleware(['auth:sanctum', 'type.user'])->group(function () {
+    // Route::get('/users/orders', [OrderController::class, 'orders']);
+});
+// Only for admins
+Route::middleware(['auth:sanctum', 'type.admin'])->group(function () {
+//   Route::get('/admins/categories', [CategoryController::class, 'orders']);
 });
