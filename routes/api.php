@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\AdminAuthController;
 use App\Http\Controllers\API\Auth\UserAuthController;
+use App\Http\Controllers\API\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::middleware(['auth:sanctum', 'type.user'])->group(function () {
 });
 // Only for admins
 Route::middleware(['auth:sanctum', 'type.admin'])->group(function () {
-    Route::post('logout', [AdminAuthController::class, 'destory']);
-//   Route::get('/admins/categories', [CategoryController::class, 'orders']);
+    Route::group(['prefix' => 'v1'], function () {
+        Route::apiResource('admin/categories', CategoryController::class);
+        Route::post('admin/logout', [AdminAuthController::class, 'destory']);
+    });
+    
+   
 });
