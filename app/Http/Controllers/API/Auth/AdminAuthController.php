@@ -31,4 +31,19 @@ class AdminAuthController extends Controller
         return new AdminAuthResource($admin);
     }
 
+    /**
+     * logout function
+     * 
+     * @param AdminAuthRequest $request
+     * 
+     */
+    public function destory(Request $request) 
+    {
+       $admin = $request->user();
+
+       $admin->tokens()->delete();
+
+       return response()->noContent();
+    }
+
 }
