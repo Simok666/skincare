@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class ItemImages extends Model
 {
     use HasFactory;
-    
+
      /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-       'category_name'
-    ];
+        'url',
+     ];
 
     /*     
     * Get the item that owns the category
@@ -27,5 +27,4 @@ class category extends Model
     {
         return $this->belongsTo(Item::class);
     }
-
 }
