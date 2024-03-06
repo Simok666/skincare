@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\Admin\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('admin/login', [HomeController::class, 'login']);
 
 Route::get('my-home', [HomeController::class, 'admin']);
 

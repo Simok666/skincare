@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class HomeController extends Controller
 {
@@ -26,6 +28,18 @@ class HomeController extends Controller
     public function admin()
     {
         return view('admin/home');
+    }
+
+    /**
+     * login admin.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request)
+    {
+        $http = new \GuzzleHttp\Client;
+
+        return view('admin/login');
     }
 
     /**
